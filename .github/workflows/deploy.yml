@@ -14,9 +14,9 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}       
       - name: Build docker image
-        run: docker build -t ahmadqayyum7/automating-ec2-deployment .  
+        run: docker build -t saad0saade008/react-app-selfrunner .  
       - name: Publish image to docker hub
-        run: docker push ahmadqayyum7/automating-ec2-deployment
+        run: docker push saad0saade008/react-app-selfrunner
         
   deploy:
     needs: build
@@ -25,8 +25,8 @@ jobs:
       - name: Login to docker hub
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Pull image from docker hub
-        run: docker pull ahmadqayyum7/automating-ec2-deployment:latest
+        run: docker pull saad0saade008/react-app-selfrunner:latest
       - name: Delete old container
         run: docker rm -f nodejs-app-container 
       - name: Run docker container
-        run: docker run -d -p 3000:3000 --name nodejs-app-container ahmadqayyum7/automating-ec2-deployment
+        run: docker run -d -p 3000:3000 --name nodejs-app-container saad0saade008/react-app-selfrunner
